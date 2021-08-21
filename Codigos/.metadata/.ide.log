@@ -1096,3 +1096,7 @@
 2021-08-20 19:41:01,801 [INFO] OpenFileManager:294 - Restore cursor
 2021-08-20 19:41:34,661 [INFO] ADCParametersView:97 -                Rank 1 : false
 2021-08-20 19:41:36,844 [INFO] ADCParametersView:97 -                Rank 1 : true
+2021-08-21 02:42:57,231 [INFO] Activator:170 - 
+
+
+2021-08-21 02:42:57,234 [INFO] Activator:171 - !SESSION log4j initialized
