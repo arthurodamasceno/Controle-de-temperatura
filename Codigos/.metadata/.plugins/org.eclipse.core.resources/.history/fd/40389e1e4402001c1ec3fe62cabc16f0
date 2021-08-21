@@ -477,7 +477,6 @@ void Control_taskF(void *pvParameters) {
 			static float u1 = 0;
 
 			float ek = ref - rx_filteredTemp;
-
 			if (ek < -5.0) {
 
 				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
@@ -489,7 +488,7 @@ void Control_taskF(void *pvParameters) {
 
 				uk = k * ek + u1;
 
-				uk = uk * 4500;         //converte ação de controle em periodo pwm
+				uk = uk * 4500;  //converte ação de controle em periodo pwm
 				dutyCycle = uk / 18000; //converte ação de controle em razão cíclica
 				__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, uk);
 
@@ -505,29 +504,28 @@ void Display_taskF(void *pvParameters) {
 		uint8_t Cmd_End[3] = { 0xFF, 0xFF, 0xFF };
 
 		int32_t number = ref * 100;
-		//sprintf(str, "setPoint.vvs1=%d", 2);
-		//HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
-		//HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
+		sprintf(str, "setPoint.vvs1=%d", 2);
+		HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
+		HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
 		sprintf(str, "setPoint.val=%ld", number);
 		HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
 		HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
 
 		number = filteredTemp * 100;
-		//sprintf(str, "filteredTemp.vvs1=%d", 2);
-		//HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
-		//HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
+		sprintf(str, "filteredTemp.vvs1=%d", 2);
+		HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
+		HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
 		sprintf(str, "filteredTemp.val=%ld", number);
 		HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
 		HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
 
 		number = dutyCycle * 100;
-		//sprintf(str, "dutyCycle.vvs1=%d", 2);
-		//HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
-		//HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
+		sprintf(str, "dutyCycle.vvs1=%d", 2);
+		HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
+		HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
 		sprintf(str, "dutyCycle.val=%ld", number);
 		HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
 		HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
-
 		vTaskDelay(1000); /*1Hz frequency*/
 	}
 }

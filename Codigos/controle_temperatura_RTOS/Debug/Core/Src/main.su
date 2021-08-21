@@ -7,6 +7,6 @@ main.c:375:13:MX_GPIO_Init	40	static
 main.c:420:6:Temp_taskF	48	static
 main.c:450:6:Filter_taskF	24	static
 main.c:467:6:Control_taskF	40	static
-main.c:501:6:Display_taskF	128	static
-main.c:550:6:HAL_TIM_PeriodElapsedCallback	16	static
-main.c:566:6:Error_Handler	4	static,ignoring_inline_asm
+main.c:502:6:Display_taskF	128	static
+main.c:552:6:HAL_TIM_PeriodElapsedCallback	16	static
+main.c:568:6:Error_Handler	4	static,ignoring_inline_asm

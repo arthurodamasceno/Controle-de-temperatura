@@ -505,25 +505,25 @@ void Display_taskF(void *pvParameters) {
 		uint8_t Cmd_End[3] = { 0xFF, 0xFF, 0xFF };
 
 		int32_t number = ref * 100;
-		//sprintf(str, "setPoint.vvs1=%d", 2);
-		//HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
-		//HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
+		sprintf(str, "setPoint.vvs1=%d", 2);
+		HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
+		HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
 		sprintf(str, "setPoint.val=%ld", number);
 		HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
 		HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
 
 		number = filteredTemp * 100;
-		//sprintf(str, "filteredTemp.vvs1=%d", 2);
-		//HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
-		//HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
+		sprintf(str, "filteredTemp.vvs1=%d", 2);
+		HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
+		HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
 		sprintf(str, "filteredTemp.val=%ld", number);
 		HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
 		HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
 
 		number = dutyCycle * 100;
-		//sprintf(str, "dutyCycle.vvs1=%d", 2);
-		//HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
-		//HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
+		sprintf(str, "dutyCycle.vvs1=%d", 2);
+		HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
+		HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
 		sprintf(str, "dutyCycle.val=%ld", number);
 		HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
 		HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);

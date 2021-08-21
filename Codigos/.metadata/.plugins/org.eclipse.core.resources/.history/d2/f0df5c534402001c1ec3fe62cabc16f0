@@ -528,7 +528,7 @@ void Display_taskF(void *pvParameters) {
 		HAL_UART_Transmit(&huart1, (uint8_t*) str, strlen(str), 10);
 		HAL_UART_Transmit(&huart1, Cmd_End, 3, 10);
 
-		vTaskDelay(1000); /*1Hz frequency*/
+		vTaskDelay(500); /*2Hz frequency*/
 	}
 }
 /* USER CODE END 4 */
