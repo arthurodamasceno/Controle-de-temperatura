@@ -22,7 +22,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 /* USER CODE BEGIN Includes */
-
+#include "FreeRTOS.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,10 +56,8 @@
 /* USER CODE END ExternalFunctions */
 
 /* USER CODE BEGIN 0 */
-
-/* USER CODE END 0 */
-
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+/* USER CODE END 0 */
                     /**
   * Initializes the Global MSP.
   */
@@ -76,9 +74,9 @@ void HAL_MspInit(void)
   /* PendSV_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(PendSV_IRQn, 15, 0);
 
-  /** DISABLE: JTAG-DP Disabled and SW-DP Disabled
+  /** NOJTAG: JTAG-DP Disabled and SW-DP Enabled
   */
-  __HAL_AFIO_REMAP_SWJ_DISABLE();
+  __HAL_AFIO_REMAP_SWJ_NOJTAG();
 
   /* USER CODE BEGIN MspInit 1 */
 
@@ -161,7 +159,7 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* htim_oc)
     /* Peripheral clock enable */
     __HAL_RCC_TIM1_CLK_ENABLE();
   /* USER CODE BEGIN TIM1_MspInit 1 */
-
+    vInitPrioGroupValue();
   /* USER CODE END TIM1_MspInit 1 */
   }
 

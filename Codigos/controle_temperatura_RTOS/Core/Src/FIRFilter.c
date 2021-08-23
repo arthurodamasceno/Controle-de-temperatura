@@ -1,7 +1,7 @@
 #include "FIRFilter.h"
 
 /* Designed filter coefficients*/
-static float FIR_IMPULSE_RESPONSE[FIR_FILTER_LENGTH] = {0.02840647f, 0.23700821f, 0.46917063f, 0.23700821f, 0.02840647f};
+static float FIR_IMPULSE_RESPONSE[FIR_FILTER_LENGTH] = {-0.01238356f, 0.10332170f, 0.81812371f, 0.10332170f, -0.01238356f};
 
 void FIRFilter_Init(FIRFilter *fir){
 	

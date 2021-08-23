@@ -11,16 +11,18 @@ Min = min(ensaio25.temp);
 K = Max-Min
 
 tau = (find(ensaio25.temp==ceil(K*0.632+Min),1)-160)/2
+taud = 20;
 
 G = (K)/((tau*s)+1)
-
+%G = (K*(exp(-taud*s)))/((tau*s)+1)
 
 Ts = 1;
 Gd = c2d(G,Ts,'zoh')
+Gw = d2c(Gd,'tustin')
 
 %% Projeto
-wc = 2*pi*0.001
-PMd = 80*pi/180
+wc = 2*pi*0.002
+PMd = 85*pi/180
 
 Gp_aux = Gd
 [zeros,polos,k] = zpkdata(Gd)
@@ -81,5 +83,29 @@ grid on
 
 %% eq diferanças
 [num,den] = tfdata(zpk(PI),'v')
+format longG
 [r,p,k] = residuez(num,den)
 
+%% outro controlador
+PIs = tf([0.171531869083168      0.000788396688646132],[1 0])
+dPIs= c2d(PIs,Ts,'zoh')
+
+eq_car2 = 1+(Gd*dPIs)
+acao_controle2  = dPIs /eq_car2
+malha_fechada2 = (Gd*dPIs)/eq_car2
+[num2,den2] = tfdata(dPIs,'v')
+format longG
+[r2,p2,k2] = residuez(num2,den2)
+
+step(malha_fechada,Gd/87)
+%% prints
+ksat = 0.1;
+fprintf('#define r %.8ff\n', r)
+fprintf('#define p %.8ff\n', p)
+fprintf('#define k %.8ff\n', k)
+fprintf('#define ksat %.8ff\n\n', ksat)
+
+fprintf('#define r %.8ff\n', r2)
+fprintf('#define p %.8ff\n', p2)
+fprintf('#define k %.8ff\n', k2)
+fprintf('#define ksat %.8ff\n', ksat)
