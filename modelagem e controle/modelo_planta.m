@@ -98,6 +98,7 @@ format longG
 [r2,p2,k2] = residuez(num2,den2)
 
 step(malha_fechada,Gd/87)
+grid on
 %% prints
 ksat = 0.1;
 fprintf('#define r %.8ff\n', r)
