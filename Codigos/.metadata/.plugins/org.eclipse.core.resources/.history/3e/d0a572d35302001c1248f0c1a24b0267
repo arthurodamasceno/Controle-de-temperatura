@@ -1,0 +1,61 @@
+#include "FIRFilter.h"
+
+/* Coeficientes do filtro */
+static float FIR_IMPULSE_RESPONSE[FIR_FILTER_LENGTH] = {0.02840647f, 0.23700821f, 0.46917063f, 0.23700821f, 0.02840647f};
+
+void FIRFilter_Init(FIRFilter *fir){
+	
+	/* Reinicia o buffer do filtro */
+	for(uint8_t n=0; n<FIR_FILTER_LENGTH;n++){
+		
+		fir->buf[n] = 0.0f;
+	
+	}
+	
+	/* Reseta o index do buffer */
+	fir->bufindex = 0;
+	
+	/* Reseta a saída do filtro */
+	fir->out = 0.0f;
+}
+
+float FIRFilter_Update(FIRFilter *fir, float inp){
+	
+	/* Guarda a entrada no buffer */
+	fir->buf[fir->bufindex] = inp;
+	
+	/* Incrementa o index do buffer e reinicia se necessário */
+	fir->bufindex++;
+	
+	if(fir->bufindex == FIR_FILTER_LENGTH){
+		
+		fir->bufindex = 0;
+		
+	}
+	
+	/* Calcula nova saída via convolução */
+	fir->out = 0.0f;
+	
+	uint8_t sumIndex = fir->bufindex;
+	
+	for(uint8_t n=0; n<FIR_FILTER_LENGTH;n++){
+		
+		/* Decrementa o index e reseta se necessary */
+		if(sumIndex>0){
+			
+			sumIndex--;
+			
+		}else{
+			
+			sumIndex = FIR_FILTER_LENGTH -1;
+			
+		}
+		
+		/* Multiplica resposta ao impulso com a entrada deslocada e soma a saída */
+		fir->out += FIR_IMPULSE_RESPONSE[n] * fir->buf[sumIndex];
+	}
+	
+	/* Returna saída filtrada */
+	return fir->out;
+	
+}
