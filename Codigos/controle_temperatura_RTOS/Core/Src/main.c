@@ -426,7 +426,6 @@ void Control_taskF(void *pvParameters) {
 			/* Proporcional */
 			up = k * ek;
 
-
 			/* Ação de controle */
 			u = up + uint;
 

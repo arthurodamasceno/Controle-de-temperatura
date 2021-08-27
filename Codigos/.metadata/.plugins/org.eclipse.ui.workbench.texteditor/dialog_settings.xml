@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="RTT_BUFFER"/>
+		<item key="selection" value="DELAY"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="Delay"/>
 			<item value="RTT_BUFFER"/>
 			<item value="vListInsert( pxDelayedTaskList, &amp;( pxCurrentTCB-&gt;xStateListItem ) );"/>
 			<item value="vListInsert( pxOverflowDelayedTaskList, &amp;( pxCurrentTCB-&gt;xStateListItem ) );"/>
@@ -22,7 +23,6 @@
 			<item value="prvAddTaskToReadyList( pxMutexHolderTCB );"/>
 			<item value="INCLUDE_uxTaskGetStackHighWaterMark"/>
 			<item value=" #endif /* INCLUDE_uxTaskGetStackHighWaterMark */"/>
-			<item value="vListInsertEnd( &amp;xSuspendedTaskList, &amp;( pxTCB-&gt;xStateListItem ) );"/>
 		</list>
 		<list key="replacehistory">
 		</list>
